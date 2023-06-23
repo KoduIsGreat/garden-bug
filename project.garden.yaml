@@ -1,0 +1,20 @@
+kind: Project
+apiVersion: garden.io/v1  
+name: test
+environments:
+  - name: local
+    defaultNamespace: ${local.username}
+    variables:
+      defaultHostname: ${project.name}.${local.username}.local.app.garden
+      replicas: 1
+      cpu: 100m
+      mem: 1Gi
+      volumeSize: 5Gi
+      storageClass: ""
+      cluster: ""
+      timestamp: ""
+providers:
+  - name: local-kubernetes
+    environments: [local]
+    setupIngressController: false
+
